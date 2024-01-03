@@ -1,7 +1,7 @@
 # Schwachstellenmgmt:
 Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswegs zur Benachrichtigung von Verantwortlichen über Schwachstellen
 
-# Vorbereitung zum Starten: 
+### Vorbereitung zum Starten: 
     1. IP_Email.csv Datei einfügen in das Hauptverzeichnis (in welchem auch die .py Dateien liegen)
         Aufbau: 
                     IP,Email
