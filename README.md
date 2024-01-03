@@ -35,7 +35,7 @@ Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswe
 
 - wichtig ist der single_hosts Ordner mit den entsprechenden PDFs
 
-# Zusätzliche benötigten Informationen
+# Zusätzlich benötigte Informationen
 - CSV Datei mit Zuordnung von IP-Adressen auf E-Mail Adressen, der Verantwortlichen
 
 # Aufgaben/Schritte:
