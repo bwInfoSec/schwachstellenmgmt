@@ -27,7 +27,7 @@ Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswe
     4. Starten des Skriptes über vulnerabilityManagement.py 
 
 
-# Inhalt eines Greenbone-Reports
+### Inhalt eines Greenbone-Reports
 - Ordner "single_hosts"
     - Pro Host gibt es eine PDF (Beispielname: uni_heidelberg_Medium_[IP Adresse].pdf)
 - CSV Datei mit IP und Hostname aller im Report enthaltenen Auffälligkeiten
@@ -35,10 +35,10 @@ Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswe
 
 - wichtig ist der single_hosts Ordner mit den entsprechenden PDFs
 
-# Zusätzlich benötigte Informationen
+### Zusätzlich benötigte Informationen
 - CSV Datei mit Zuordnung von IP-Adressen zu E-Mail Adressen, der Verantwortlichen
 
-# Aufgaben/Schritte:
+### Aufgaben/Schritte:
     1. Login in der Nextcloud 
     2. Sicherstellen, dass alle restlichen (ZIP)-Dateien, die noch in der Nextcloud vorhanden sind, gelöscht werden
     3. Die einzelnen PDF-Dateien aus dem Report werden nach der E-Mail Adresse sortiert und in eine ZIP-Datei verpackt
