@@ -2,29 +2,29 @@
 Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswegs zur Benachrichtigung von Verantwortlichen über Schwachstellen
 
 # Vorbereitung zum Starten: 
-    1. IP_Email.csv Datei einfügen in das Hauptverzeichnis (in welchem auch die .py Dateien liegen)
-        Aufbau: 
-                    IP,Email
-                    [IP],[Email]
-                    [IP],[Email]
-                    [IP],[Email]
+1. IP_Email.csv Datei einfügen in das Hauptverzeichnis (in welchem auch die .py Dateien liegen)
+    Aufbau: 
+                IP,Email
+                [IP],[Email]
+                [IP],[Email]
+                [IP],[Email]
+                ...
+
+2. Den aktuellen Report einfügen in einen Ordner "current_report"
+    Aufbau: 
+            current_report
+                single_hosts
+                    pdf
                     ...
+                uni_heidelberg_hosts.csv
+                ...
 
-    2. Den aktuellen Report einfügen in den Ordner "current_report"
-        Aufbau: 
-                current_report
-                    single_hosts
-                        pdf
-                        ...
-                    uni_heidelberg_hosts.csv
-                    ...
+3. Passwörter und Links einfügen
+    - Nextcloud Zugangsdaten in vulnerabilityManagement.py
+    - SMTP Informationen in email_functions.py
+    - One-Time-Secret Zugangsdaten in secret_functions.py
 
-    3. Passwörter und Links einfügen
-        - Nextcloud Zugangsdaten in vulnerabilityManagement.py
-        - SMTP Informationen in email_functions.py
-        - One-Time-Secret Zugangsdaten in secret_functions.py
-
-    4. Starten des Skriptes über vulnerabilityManagement.py 
+4. Starten des Skriptes über vulnerabilityManagement.py 
 
 
 # Inhalt eines Greenbone-Reports
@@ -36,7 +36,7 @@ Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswe
 - wichtig ist der single_hosts Ordner mit den entsprechenden PDFs
 
 # Zusätzlich benötigte Informationen
-- CSV Datei mit Zuordnung von IP-Adressen auf E-Mail Adressen, der Verantwortlichen
+- CSV Datei mit Zuordnung von IP-Adressen zu E-Mail Adressen, der Verantwortlichen
 
 # Aufgaben/Schritte:
 1. Login in der Nextcloud 
