@@ -50,7 +50,7 @@ Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswe
     - Der Share der Nextcloud wird ebenfalls mit einem Passwort geschützt
     - Es wird ein Link erzeugt, der direkt zu der geuploadeten Datei führt
     - Der Link ist nur x Tage gültig
-5. Es werden 2 One-Time-Link erstellt (https://onetimesecret.urz.uni-heidelberg.de:443)
+5. Es werden 2 One-Time-Links erstellt (https://onetimesecret.urz.uni-heidelberg.de:443)
     - Können nur einmal geöffnet werden 
     - Sichern die Kommunikation der Passwörter für die Nextcloud und für die ZIP-Datei ab
 6. Es werden zwei verschiedene E-Mails versendet an einen Empfänger
