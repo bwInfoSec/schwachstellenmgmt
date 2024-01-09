@@ -1,6 +1,5 @@
-from onetimesecret import OneTimeSecretCli
+import requests
 import secrets
-import os
 
 # The function reads One-Time-Secret credentials from the credentials.txt file
 def read_onetimesecret_credentials():
@@ -25,18 +24,23 @@ def generate_random_password(length=12):
         raise
 
 # The function creates a one-time secret link for the submitted secret 
-# with a specific email, API key, and custom URL for Heidelberg University's One-Time Secret service
+# with custom URL for Heidelberg University's One-Time Secret service
 def create_one_time_secret_link(secret):
     try:
         # Read One-Time-Secret credentials from the credentials.txt file
         credentials = read_onetimesecret_credentials()
+        otp_api_url = credentials['otp_api_url']
+        otp_link = credentials['otp_link']
 
-        email = credentials['email']
-        api_key = credentials['api_key']
-        custom_url = credentials['custom_url']
+        response = requests.post(otp_api_url, data={'secret': secret})
+        response_data = response.json()
 
-        oneTimeSecretCli = OneTimeSecretCli(email, api_key, url=custom_url)
-        return oneTimeSecretCli.create_link(secret)
+        secret_key = response_data['secret_key']
+
+        link = otp_link+secret_key
+        return link
+        
+
     except Exception as e:
         print(f"Error creating One-Time-Secret link: {str(e)}")
         raise

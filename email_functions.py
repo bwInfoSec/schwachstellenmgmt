@@ -23,7 +23,7 @@ def send_sharePassword_email(receiver, subject, share_password_link):
         message = f"""\
 Subject: {subject}
 To: {receiver}
-From: {credentials['email']}
+From: {credentials['SMTP_email']}
 
 {f"""\
 English version below!
@@ -54,7 +54,7 @@ URZ
         # Establish SMTP connection and send email
         with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
             server.login(credentials['SMTP_username'], credentials['SMTP_password'])
-            server.sendmail(credentials['email'], receiver, message.encode('utf-8'))
+            server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
         print(f"Error sending share password email: {str(e)}")
         raise
@@ -67,7 +67,7 @@ def send_link_and_zipPassword_email(receiver, subject, share_url, zip_password_l
         message = f"""\
 Subject: {subject}
 To: {receiver}
-From: {credentials['email']}
+From: {credentials['SMTP_email']}
 
 {f"""\
 English version below!
@@ -117,7 +117,7 @@ URZ
         # Establish SMTP connection and send email
         with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
             server.login(credentials['SMTP_username'], credentials['SMTP_password'])
-            server.sendmail(credentials['email'], receiver, message.encode('utf-8'))
+            server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
         print(f"Error sending link and ZIP password email: {str(e)}")
         raise
