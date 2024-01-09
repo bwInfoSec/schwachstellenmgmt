@@ -3,19 +3,24 @@ import os
 
 # The function reads SMTP credentials from the credentials.txt file
 def read_smtp_credentials():
-    with open('credentials.txt', 'r') as file:
-        lines = file.readlines()
-        credentials = {}
-        for line in lines:
-            key, value = line.strip().split('=')
-            credentials[key] = value
-        return credentials
+    try:
+        with open('credentials.txt', 'r') as file:
+            lines = file.readlines()
+            credentials = {}
+            for line in lines:
+                key, value = line.strip().split('=')
+                credentials[key] = value
+            return credentials
+    except Exception as e:
+        print(f"Error reading SMTP credentials: {str(e)}")
+        raise
     
 # The function sends an e-mail with a one-time link for the share password
 def send_sharePassword_email(receiver, subject, share_password_link):
-    credentials = read_smtp_credentials()
+    try:
+        credentials = read_smtp_credentials()
 
-    message = f"""\
+        message = f"""\
 Subject: {subject}
 To: {receiver}
 From: {credentials['email']}
@@ -46,16 +51,20 @@ URZ
 """
 }"""       
 
-    # Establish SMTP connection and send email
-    with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
-        server.login(credentials['SMTP_username'], credentials['SMTP_password'])
-        server.sendmail(credentials['email'], receiver, message.encode('utf-8'))
+        # Establish SMTP connection and send email
+        with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
+            server.login(credentials['SMTP_username'], credentials['SMTP_password'])
+            server.sendmail(credentials['email'], receiver, message.encode('utf-8'))
+    except Exception as e:
+        print(f"Error sending share password email: {str(e)}")
+        raise
 
 # The function sends an email with a link and a one-time secret link for the ZIP password
 def send_link_and_zipPassword_email(receiver, subject, share_url, zip_password_link, expiration_date):
-    credentials = read_smtp_credentials()
-    
-    message = f"""\
+    try:
+        credentials = read_smtp_credentials()
+        
+        message = f"""\
 Subject: {subject}
 To: {receiver}
 From: {credentials['email']}
@@ -105,7 +114,10 @@ URZ
 """
 }"""
 
-    # Establish SMTP connection and send email
-    with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
-        server.login(credentials['SMTP_username'], credentials['SMTP_password'])
-        server.sendmail(credentials['email'], receiver, message.encode('utf-8'))
+        # Establish SMTP connection and send email
+        with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
+            server.login(credentials['SMTP_username'], credentials['SMTP_password'])
+            server.sendmail(credentials['email'], receiver, message.encode('utf-8'))
+    except Exception as e:
+        print(f"Error sending link and ZIP password email: {str(e)}")
+        raise
