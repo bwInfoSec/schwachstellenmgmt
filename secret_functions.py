@@ -13,7 +13,7 @@ def read_onetimesecret_credentials():
             return credentials
     except Exception as e:
         print(f"Error reading One-Time-Secret credentials: {str(e)}")
-        raise
+        
 
 # The function generates a random password with a default length of 12 characters
 def generate_random_password(length=12):
@@ -21,7 +21,7 @@ def generate_random_password(length=12):
         return secrets.token_urlsafe(length)
     except Exception as e:
         print(f"Error generating random password: {str(e)}")
-        raise
+        
 
 # The function creates a one-time secret link for the submitted secret 
 # with custom URL for Heidelberg University's One-Time Secret service
@@ -43,4 +43,4 @@ def create_one_time_secret_link(secret):
 
     except Exception as e:
         print(f"Error creating One-Time-Secret link: {str(e)}")
-        raise
+        

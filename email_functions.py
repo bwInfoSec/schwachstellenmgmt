@@ -13,7 +13,7 @@ def read_smtp_credentials():
             return credentials
     except Exception as e:
         print(f"Error reading SMTP credentials: {str(e)}")
-        raise
+        
     
 # The function sends an e-mail with a one-time link for the share password
 def send_sharePassword_email(receiver, subject, share_password_link):
@@ -57,7 +57,7 @@ URZ
             server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
         print(f"Error sending share password email: {str(e)}")
-        raise
+        
 
 # The function sends an email with a link and a one-time secret link for the ZIP password
 def send_link_and_zipPassword_email(receiver, subject, share_url, zip_password_link, expiration_date):
@@ -120,4 +120,4 @@ URZ
             server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
         print(f"Error sending link and ZIP password email: {str(e)}")
-        raise
+        
