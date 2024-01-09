@@ -32,11 +32,13 @@ def create_one_time_secret_link(secret):
         otp_api_url = credentials['otp_api_url']
         otp_link = credentials['otp_link']
 
+        # Send request to create the one-time secret to the One-Time-Secret API
         response = requests.post(otp_api_url, data={'secret': secret})
         response_data = response.json()
 
         secret_key = response_data['secret_key']
 
+        # Create the one-time secret link
         link = otp_link+secret_key
         return link
         
