@@ -1,5 +1,4 @@
 import smtplib
-import os
 
 # The function reads SMTP credentials from the credentials.txt file
 def read_smtp_credentials():
