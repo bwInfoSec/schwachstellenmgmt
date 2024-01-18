@@ -14,109 +14,56 @@ def read_smtp_credentials():
         print(f"Error reading SMTP credentials: {str(e)}")
         
     
+# Function to read the email body from a text file
+def read_email_body(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except Exception as e:
+        print(f"Error reading email body from {file_path}: {str(e)}")
+        return ""
+
 # The function sends an e-mail with a one-time link for the share password
-def send_sharePassword_email(receiver, subject, share_password_link):
+def send_NextcloudPassword_email(receiver, subject, nextcloud_password_link, passwordNextcloud_emailText):
     try:
         credentials = read_smtp_credentials()
+        email_body = read_email_body(passwordNextcloud_emailText)
 
-        message = f"""\
+        if email_body:
+            message = f"""\
 Subject: {subject}
 To: {receiver}
 From: {credentials['SMTP_email']}
 
-{f"""\
-English version below!
- 
-Sehr geehrte Damen und Herren,
-
-innerhalb der Universität Heidelberg wurde durch das Universitätsrechenzentrum ein Scan durchgeführt, der wichtige Informationen über die vorhandenen und verwendeten IP-Adressen lieferte. Hier besteht dringender Handlungsbedarf.
-In einer vorherigen E-Mail haben Sie bereits einen Link zu einer Datei enthalten, welche die wichtigsten Informationen zusammenfasst. Der Speicherort dieser Datei ist jedoch mit einem Passwort geschützt, welches Sie unter folgendem einmaligem Link finden können:
-{share_password_link}
-
-Mit freundlichen Grüßen,
-URZ
-
-
-__________________________________________________________
-
-Dear Sir or Madam,
-
-A scan was carried out within Heidelberg University by the University Computer Center, which provided important information about the available IP addresses. There is an urgent need for action here.
-In a previous e-mail you have already included a link to a file which summarizes the most important information. However, the storage location of this file is protected with a password, which you can find under the following unique link:
-{share_password_link}
-
-Yours sincerely, 
-URZ
+{email_body.format(nextcloud_password_link=nextcloud_password_link)}
 """
-}"""       
 
-        # Establish SMTP connection and send email
-        with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
-            server.login(credentials['SMTP_username'], credentials['SMTP_password'])
-            server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
+            # Establish SMTP connection and send email
+            with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
+                server.login(credentials['SMTP_username'], credentials['SMTP_password'])
+                server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
         print(f"Error sending share password email: {str(e)}")
-        
 
 # The function sends an email with a link and a one-time secret link for the ZIP password
-def send_link_and_zipPassword_email(receiver, subject, share_url, zip_password_link, expiration_date):
+def send_link_and_zipPassword_email(receiver, subject, nextcloud_file_url, zip_password_link, expiration_date, link_passwordZIP_emailText):
     try:
         credentials = read_smtp_credentials()
-        
-        message = f"""\
+        email_body = read_email_body(link_passwordZIP_emailText)
+
+        if email_body:
+            message = f"""\
 Subject: {subject}
 To: {receiver}
 From: {credentials['SMTP_email']}
 
-{f"""\
-English version below!
-
-Sehr geehrte Damen und Herren,
-
-innerhalb der Universität Heidelberg wurde durch das Universitätsrechenzentrum ein Scan durchgeführt, der wichtige Informationen über die vorhandenen und verwendeten IP-Adressen lieferte. Hier besteht dringender Handlungsbedarf. 
-Die Ergebnisse des Scans und die empfohlene Lösung des Problems finden Sie in einer Zip-Datei unter folgendem Link: 
-{share_url}
-(Bitte beachten Sie, dass der Link nur bis {expiration_date} gültig ist)
-
-Um die Sicherheit zu erhöhen, ist der Zugriff auf den Speicherort der Zip-Datei mit einem Passwort geschützt. Das Passwort hierfür finden Sie in einer separaten E-Mail. 
-
-Auch die Zip-Datei ist mit einem Passwort geschützt, das Sie mit dem folgenden einmaligen Link aufrufen können:
-{zip_password_link}
-(Die Zip-Datei lässt sich mit dem Programm 7-Zip File Manager entpacken und entschlüsseln)
-
-Bei Fragen wenden Sie sich bitte an die folgende E-Mail-Adresse: URZ_EMAIL
-
-Mit freundlichen Grüßen, 
-URZ
-__________________________________________________________
-
-Dear Sir or Madam,
-
-A scan was carried out within Heidelberg University by the University Computer Center, which provided important information about the IP addresses available and in use. There is an urgent need for action here. 
-The results of the scan and the recommended solution to the problem can be found in a zip file under the following link: 
-{share_url}
-(Please note that the link is only valid until {expiration_date})
-
-To increase security, access to the storage location of the zip file is protected with a password. You will find the password for this in a separate e-mail. 
-
-Also the zip file is password protected and can be accessed using the following unique link:
-{zip_password_link}
-(The zip file can be unpacked and decrypted using the 7-Zip File Manager program)
-
-
-If you have any questions, please contact the following e-mail address: URZ_EMAIL
-
-Yours sincerely, 
-URZ
-
-
+{email_body.format(nextcloud_file_url=nextcloud_file_url, zip_password_link=zip_password_link, expiration_date=expiration_date)}
 """
-}"""
 
-        # Establish SMTP connection and send email
-        with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
-            server.login(credentials['SMTP_username'], credentials['SMTP_password'])
-            server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
+            # Establish SMTP connection and send email
+            with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
+                server.login(credentials['SMTP_username'], credentials['SMTP_password'])
+                server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
         print(f"Error sending link and ZIP password email: {str(e)}")
         
