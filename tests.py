@@ -1,9 +1,7 @@
 import unittest
-from unittest.mock import patch
-from vulnerabilityManagement import upload_file, create_tag, create_zip_folder
-from secret_functions import generate_random_password
+from schwachstellenmgmt.vulnerability_management import upload_file, create_tag, create_zip_folder
+from schwachstellenmgmt.secret_functions import generate_random_password
 import nc_py_api
-from datetime import datetime, timedelta
 import os
 import pyzipper
 import shutil
