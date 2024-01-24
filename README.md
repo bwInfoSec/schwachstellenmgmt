@@ -1,6 +1,9 @@
 # Schwachstellenmgmt:
 Fortgechrittenenpraktikum zum Thema: Entwicklung eines sicheren Kommunikationswegs zur Benachrichtigung von Verantwortlichen über Schwachstellen
 
+
+NICHTMEHR AKTUELL
+
 ### Vorbereitung zum Starten: 
     1. IP_Email.json nach dem darin dargestellten Aufbau ausfüllen 
     2. Passwörter und Links in der credentials.txt Datei einfügen

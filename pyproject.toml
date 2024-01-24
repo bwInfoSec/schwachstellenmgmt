@@ -6,18 +6,17 @@ build-backend = "setuptools.build_meta"
 name = "schwachstellenmgmt"
 version = "0.0.1"
 authors = [
-  { name="Lea Schmierer", email="lea.schmierer@uni-heidelberg.de" },
   { name="Stefan Machmeier", email="stefan.machmeier@uni-heidelberg.de" },
+  { name="Lea Schmierer", email="lea.schmierer@uni-heidelberg.de" },
 ]
-description = ""
+description = "This project contacts the persons responsible for IP addresses affected by vulnerabilities via email. Communication takes place via the Nextcloud, an onetimesecret and the sending of emails."
 readme = "README.md"
 license = { file="LICENSE" }
 requires-python = ">=3.7"
 keywords = [ "network" ]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
-    "Operating System :: OS Independent",
     "Operating System :: OS Independent",
     'Intended Audience :: Telecommunications Industry',
     'Intended Audience :: Information Technology',
@@ -30,10 +29,10 @@ classifiers = [
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
-    'Topic :: Security',
-    'Topic :: Internet :: Log Analysis',
-    'Topic :: System :: Networking :: Monitoring',
-    'Topic :: Scientific/Engineering :: Artificial Intelligence'
+    'Topic :: Security' ,
+    'Topic :: Networking :: Communication',
+    'Topic :: Security :: Cryptography',
+    'Topic :: Communications :: Email',
 ]
 
 [project.scripts]
@@ -51,15 +50,3 @@ exclude = [
     "test*",
     "assets*",
 ]
-
-[tool.poetry]
-name = "schwachstellenmgmt"
-version = "0.0.1"
-description = ""
-license = "EUPL-1.2"
-authors = ["Stefan Machmeier"]
-
-[[tool.poetry_bumpversion.replacements]]
-files = ["heifip/__init__.py", "heifip/exceptions/__init__.py", "heifip/images/__init__.py", "heifip/layers/__init__.py", "heifip/plugins/__init__.py", "heifip/protocols/__init__.py"]
-search = '__version__ = "{current_version}"'
-replace = '__version__ = "{new_version}"'
