@@ -14,14 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-12"]
-        python-version: ["pypy-3.9",
-                         "pypy-3.8",
-                         "pypy-3.7",
+        python-version: ["3.12",
                          "3.11",
                          "3.10",
-                         "3.9",
-                         "3.8",
-                         "3.7"
+                         "3.9"
                          ]
 
     steps:
@@ -58,9 +54,3 @@ jobs:
     - name: Build
       run: |
         python -m pip install .
-
-    # - name: Test
-    #   # On other versions then 3.9, we test only. (without coverage generation)
-    #   if: startsWith(matrix.os, 'macos') && !startsWith(matrix.python-version, '3.9') && !startsWith(github.ref, 'refs/tags/')
-    #   run: |
-    #     python -m pytest tests.py
