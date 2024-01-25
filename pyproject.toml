@@ -12,10 +12,10 @@ authors = [
 description = "This project contacts the persons responsible for IP addresses affected by vulnerabilities via email. Communication takes place via the Nextcloud, an onetimesecret and the sending of emails."
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 keywords = [ "network" ]
 classifiers = [
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3",
     "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
     "Operating System :: OS Independent",
     'Intended Audience :: Telecommunications Industry',
@@ -24,11 +24,10 @@ classifiers = [
     'Intended Audience :: Science/Research',
     'Intended Audience :: Developers',
     'Programming Language :: Python :: 3 :: Only',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
     'Topic :: Security' ,
     'Topic :: Networking :: Communication',
     'Topic :: Security :: Cryptography',
