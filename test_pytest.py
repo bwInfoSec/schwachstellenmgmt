@@ -30,12 +30,21 @@ def nc_instance():
         nc_auth_pass="admin_password",
     )
 
+def test_create_tag(nc_instance):
+    tag_name = "test_tag"
+    create_tag(nc_instance, tag_name)
+
+    # Verify if the tag was created successfully
+    tags = nc_instance.files.list_tags()
+    assert any(tag_name in tag.display_name for tag in tags)
+
 def test_upload_file(nc_instance):
 
     test_zip_file = "Test@test.uni-heidelberg.de.zip"
+    deletion_tag = "test_tag"
 
     # Upload the test file to Nextcloud
-    upload_file(nc_instance, test_zip_file, test_zip_file)
+    upload_file(nc_instance, test_zip_file, test_zip_file, deletion_tag)
 
     # Verify if the file was uploaded successfully
     files_api = nc_instance.files
@@ -48,15 +57,6 @@ def test_upload_file(nc_instance):
     # Verify if the file was deleted successfully
     all_files = files_api.listdir(depth=2, exclude_self=False)
     assert not any(file.name == test_zip_file for file in all_files)
-
-
-def test_create_tag(nc_instance):
-    tag_name = "Greenbone Report 20-days"
-    create_tag(nc_instance, tag_name)
-
-    # Verify if the tag was created successfully
-    tags = nc_instance.files.list_tags()
-    assert any(tag_name in tag.display_name for tag in tags)
 
 
 def test_create_zip_folder():
