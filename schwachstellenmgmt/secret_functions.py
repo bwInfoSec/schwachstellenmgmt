@@ -1,16 +1,16 @@
 import requests
 import secrets
 
-# The function generates a random password with a default length of 12 characters
-def generate_random_password(length=12):
+# The function generates a random password
+def generate_random_password(length=12) -> str:
     try:
         return secrets.token_urlsafe(length)
     except Exception as e:
-        print(f"Error generating random password: {str(e)}")
+        print(f"Error generating random password: ", e)
 
 # The function creates a one-time secret link for the submitted secret 
 # with a custom URL for Heidelberg University's One-Time Secret service
-def create_one_time_secret_link(secret, credentials):
+def create_one_time_secret_link(secret: str, credentials: dict) -> str:
     try:
         otp_domain = credentials['otp_domain']
 
@@ -25,4 +25,4 @@ def create_one_time_secret_link(secret, credentials):
         return link
 
     except Exception as e:
-        print(f"Error creating One-Time-Secret link: {str(e)}")
+        print(f"Error creating One-Time-Secret link: ", e)
