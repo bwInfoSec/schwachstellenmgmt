@@ -25,9 +25,9 @@ def setup_before_tests():
 @pytest.fixture(scope="session")
 def nc_instance():
     return nc_py_api.Nextcloud(
-        nextcloud_url="https://nextcloud.bwinfosec.uni-heidelberg.de",
-        nc_auth_user="***",
-        nc_auth_pass="***",
+        nextcloud_url="http://localhost:8080",
+        nc_auth_user="admin",
+        nc_auth_pass="admin_password",
     )
 
 def test_upload_file(nc_instance):
