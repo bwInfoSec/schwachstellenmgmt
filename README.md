@@ -27,11 +27,8 @@ The user has to enter some information so that the script can start:
     `{
     
            "IP": "email",
-    
            "IP": "email",
-    
            "IP": "email",
-    
            "IP": "email"
     
     }`
