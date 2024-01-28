@@ -1,16 +1,39 @@
 import smtplib
 from datetime import datetime, timedelta
 
-# The function reads the email body from a text file
 def read_email_body(file_path:str) -> str:
+    """
+    The method reads the email body from a text file
+
+    Args:
+    file_path (str): The path to the text file containing the email body.
+
+    Returns:
+    str: The content of the email body.
+
+    """
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             return file.read()
     except Exception as e:
         print(f"Error reading email body from {file_path}: ", e)
 
-# The function sends an email with a link to the file in the Nextcloud and a one-time secret link for the ZIP password
 def send_link_and_zipPassword_email(credentials:dict, receiver:str, nextcloud_file_url:str, zip_password_link:str, expiration_date: datetime, link_passwordZIP_emailText: str) -> None:
+    """
+    The method sends an email with a link to the file in the Nextcloud and a one-time secret link for the ZIP password.
+
+    Args:
+    credentials (dict): A dictionary containing access data for sending emails.
+    receiver (str): The email address of the recipient.
+    nextcloud_file_url (str): The URL of the file in the Nextcloud.
+    zip_password_link (str): The one-time secret link for the ZIP password.
+    expiration_date (datetime): The expiration date for the link.
+    link_passwordZIP_emailText (str): The path to the text file containing the email template.
+
+    Returns:
+    None
+    """
+    
     try:
         email_body = read_email_body(link_passwordZIP_emailText)
 
@@ -29,8 +52,19 @@ From: {credentials['SMTP_email']}
     except Exception as e:
         print(f"Error sending link and ZIP password email: ", e)
 
-# The function sends an e-mail with a one-time link for the Nextcloud password
 def send_NextcloudPassword_email(credentials: dict, receiver: str, nextcloud_password_link: str, passwordNextcloud_emailText:str) -> None:
+    """
+    The method sends an e-mail with a one-time link for the Nextcloud password
+
+    Args:
+    credentials (dict): A dictionary containing access data for sending emails.
+    receiver (str): The email address of the recipient.
+    nextcloud_password_link (str): The one-time secret link for the Nextcloud password.
+    passwordNextcloud_emailText (str): The path to the text file containing the email template.
+
+    Returns:
+    None
+    """
     try:
         email_body = read_email_body(passwordNextcloud_emailText)
 
