@@ -31,19 +31,19 @@ The user has to enter some information so that the script can start:
     }`
   
 4.  credentials-path:
-        - Path to a credentials.txt file.
-        - This file contains all credentials needed for the script to run.
-        - It's also possible to fill in the default credentials.txt file under the following path: "schwachstellenmgmt\templates\credentials.txt"
-        - The script need following credentials: 
-            nextcloud_url=
-            nc_auth_user=
-            nc_auth_pass=
-            SMTP_domain=
-            SMTP_port=
-            SMTP_username=
-            SMTP_password=
-            SMTP_email=
-            otp_domain=
+    - Path to a credentials.txt file.
+    - This file contains all credentials needed for the script to run.
+    - It's also possible to fill in the default credentials.txt file under the following path: "schwachstellenmgmt\templates\credentials.txt"
+    - The script need following credentials: 
+      nextcloud_url=
+      nc_auth_user=
+      nc_auth_pass=
+      SMTP_domain=
+      SMTP_port=
+      SMTP_username=
+      SMTP_password=
+      SMTP_email=
+      otp_domain=
 
 5.  expiration-days:
         - Number of days until the link to the file in the Nextcloud should expire.
