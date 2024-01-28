@@ -23,12 +23,12 @@ The user has to enter some information so that the script can start:
     - Path to the IP_Email JSON-file.
     - This JSON file contains mappings of IP addresses to email addresses.
     - The file have to be in the following structure: 
-    {
+    `{
            "IP": "email",
            "IP": "email",
            "IP": "email",
            "IP": "email"
-    }
+    }`
   
 4.  credentials-path:
         - Path to a credentials.txt file.
