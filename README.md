@@ -31,6 +31,7 @@ The user has to enter some information so that the script can start:
     "IP": "email",
     "IP": "email"
 }
+```
   
 5.  credentials-path:
     - Path to a credentials.txt file.
