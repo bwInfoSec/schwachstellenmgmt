@@ -37,7 +37,7 @@ The user has to enter some information so that the script can start:
     - Path to a credentials.txt file.
     - This file contains all credentials needed for the script to run.
     - It's also possible to fill in the default credentials.txt file under the following path: `schwachstellenmgmt\templates\credentials.txt`
-    - The script need following credentials: 
+    - The script needs following credentials: 
 ```plaintext
 nextcloud_url=
 nc_auth_user=
