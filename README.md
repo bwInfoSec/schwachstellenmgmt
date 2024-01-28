@@ -23,14 +23,20 @@ The user has to enter some information so that the script can start:
     - Path to the IP_Email JSON-file.
     - This JSON file contains mappings of IP addresses to email addresses.
     - The file have to be in the following structure: 
+  
     `{
+    
            "IP": "email",
+    
            "IP": "email",
+    
            "IP": "email",
+    
            "IP": "email"
+    
     }`
   
-4.  credentials-path:
+5.  credentials-path:
     - Path to a credentials.txt file.
     - This file contains all credentials needed for the script to run.
     - It's also possible to fill in the default credentials.txt file under the following path: "schwachstellenmgmt\templates\credentials.txt"
@@ -45,20 +51,20 @@ The user has to enter some information so that the script can start:
       SMTP_email=
       otp_domain=
 
-5.  expiration-days:
+6.  expiration-days:
         - Number of days until the link to the file in the Nextcloud should expire.
         - If nothing is entered then the default value ( = 14 days) will be selected.
 
-6.  deletion-days:
+7.  deletion-days:
         - Number of days until the files should be completely deleted from Nextcloud.
         - If nothing is entered then the default value ( = 14 days) will be selected.
     
-7.  link_passwordzip_emailtext:
+8.  link_passwordzip_emailtext:
         - Path to a .txt file containing content for the email, which includes the link to Nextcloud and a one-time secret link for the password of the ZIP file.
         - The email content can be customized using placeholders like {nextcloud_file_url}, {zip_password_link}, and {expiration_date}.
         - If nothing is entered then the default value ("schwachstellenmgmt\templates\link_passwordZIP_emailText.txt") will be selected.
 
-8.  passwordnextcloud_emailtext:
+9.  passwordnextcloud_emailtext:
         - Path to a .txt file containing content for the email, which includes the one-time link for the password to Nextcloud.
         - The email content can be customized using the placeholder {nextcloud_password_link}.
         - If nothing is entered then the default value ("schwachstellenmgmt\templates\passwordNextcloud_emailText.txt") will be selected.
