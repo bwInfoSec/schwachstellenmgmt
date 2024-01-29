@@ -6,7 +6,7 @@ The Vulnerability Management System is a Python program designed to contact indi
 ## Installation
 1. Clone the repository: `git clone https://github.com/bwInfoSec/schwachstellenmgmt.git`
 2. Navigate to the project directory: `cd schwachstellenmgmt`
-3. (Optional:A virtual environment can be created with Python: `python -m venv env` )
+3. (Optional: A virtual environment can be created with Python: `python -m venv env` )
 4. Install the required dependencies: `pip install -r requirements.txt`
 5. Install the Python package: `pip install .`
 6. Get more information about the system: `schwachstellenmgmt -h`
