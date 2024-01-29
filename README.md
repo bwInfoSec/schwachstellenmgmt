@@ -18,7 +18,7 @@ The user has to enter some information so that the script can start:
 1.  pdf-folder:
     - Path to the single_hosts folder of the Greenbone report.
     - This folder contains individual PDFs for each affected IP address.
-        - The PDFs are named as follows: `uni_heidelberg_Medium_[IP address].pdf`
+        - The PDFs are named as follows: `[...]_[IP address].pdf`
 
 3.  json-file:
     - Path to the IP_Email JSON-file.
