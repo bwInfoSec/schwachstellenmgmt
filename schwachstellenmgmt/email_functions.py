@@ -47,6 +47,7 @@ From: {credentials['SMTP_email']}
 """
             # Create SMTP connection and send email
             with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
+                server.starttls()
                 server.login(credentials['SMTP_username'], credentials['SMTP_password'])
                 server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
@@ -79,6 +80,7 @@ From: {credentials['SMTP_email']}
 
             # Create SMTP connection and send email
             with smtplib.SMTP(credentials['SMTP_domain'], int(credentials['SMTP_port'])) as server:
+                server.starttls()
                 server.login(credentials['SMTP_username'], credentials['SMTP_password'])
                 server.sendmail(credentials['SMTP_email'], receiver, message.encode('utf-8'))
     except Exception as e:
