@@ -9,7 +9,9 @@ import nc_py_api
 @pytest.fixture(scope="session", autouse=True)
 def setup_before_tests():
     # Create a test folder with a test.txt file
-    test_folder = "schwachstellenmgmt\\Test"
+    test_folder = "schwachstellenmgmt/Test"
+    test_folder = os.path.normpath(test_folder)
+
     test_file_path = os.path.join(test_folder, "test.txt")
 
     # Create the text for the test.txt file
@@ -18,7 +20,9 @@ def setup_before_tests():
         test_file.write("This is a test file.")
 
     # Create Test@test.uni-heidelberg.de.zip file with the test.txt file 
-    test_zip_file = "schwachstellenmgmt\\Test@test.uni-heidelberg.de.zip"
+    test_zip_file = "schwachstellenmgmt/Test@test.uni-heidelberg.de.zip"
+    test_zip_file = os.path.normpath(test_zip_file)
+    
     with pyzipper.AESZipFile(test_zip_file, "w", compression=pyzipper.ZIP_DEFLATED) as zip_file:
         zip_file.write(test_file_path)
 
@@ -60,11 +64,13 @@ def test_upload_file(nc_instance):
 
 
 def test_create_zip_folder():
-    folder_name = "schwachstellenmgmt\\Test"
-    folder_name_zip = "schwachstellenmgmt\\Test.zip"
+    folder_name = "schwachstellenmgmt/Test"
+    folder_name = os.path.normpath(folder_name)
+
+    folder_name_zip = "schwachstellenmgmt/Test.zip"
+    folder_name_zip = os.path.normpath(folder_name_zip)
     password = "CORRECTPASSWORD"
     
-
     # Create a zip folder and verify its existence
     create_zip_folder(folder_name, folder_name_zip, password)
     assert os.path.isfile(folder_name_zip)
@@ -72,11 +78,13 @@ def test_create_zip_folder():
 
 
 def test_unzip_zip_folder_correctPassword():
-    folder_name_zip = "schwachstellenmgmt\\Test.zip"
+    folder_name_zip = "schwachstellenmgmt/Test.zip"
+    folder_name_zip = os.path.normpath(folder_name_zip)
+
+    output_folder = "schwachstellenmgmt/correct_unzipped"
+    output_folder = os.path.normpath(output_folder)
+
     password = "CORRECTPASSWORD"
-    output_folder = "schwachstellenmgmt\\correct_unzipped"
-
-
 
     # Unzip the folder with the correct password
     with pyzipper.AESZipFile(folder_name_zip, "r") as zip_file:
@@ -90,10 +98,13 @@ def test_unzip_zip_folder_correctPassword():
 
 
 def test_unzip_zip_folder_wrongPassword():
-    folder_name_zip = "schwachstellenmgmt\\Test.zip"
-    output_folder = "schwachstellenmgmt\\wrong_unzipped"
-    password = "WRONGPASSWORD" 
+    folder_name_zip = "schwachstellenmgmt/Test.zip"
+    folder_name_zip = os.path.normpath(folder_name_zip)
 
+    output_folder = "schwachstellenmgmt/wrong_unzipped"
+    output_folder = os.path.normpath(output_folder)
+
+    password = "WRONGPASSWORD" 
 
     # Attempt to unzip the folder with the wrong password and expect a RuntimeError
     with pytest.raises(RuntimeError):
@@ -109,11 +120,20 @@ def test_generate_random_password():
 
 @pytest.fixture(scope="session", autouse=True)
 def final_cleanup(request):
-    test_folder = "schwachstellenmgmt\\Test"
-    test_folder_zip = "schwachstellenmgmt\\Test.zip"
-    correct_enzippt_folder = "schwachstellenmgmt\\correct_unzipped"
-    wrong_enzippt_folder = "schwachstellenmgmt\\wrong_unzipped"
-    test_zip_file = "schwachstellenmgmt\\Test@test.uni-heidelberg.de.zip"
+    test_folder = "schwachstellenmgmt/Test"
+    test_folder = os.path.normpath(test_folder)
+
+    test_folder_zip = "schwachstellenmgmt/Test.zip"
+    test_folder_zip = os.path.normpath(test_folder_zip)
+
+    correct_enzippt_folder = "schwachstellenmgmt/correct_unzipped"
+    correct_enzippt_folder = os.path.normpath(correct_enzippt_folder)
+
+    wrong_enzippt_folder = "schwachstellenmgmt/wrong_unzipped"
+    wrong_enzippt_folder = os.path.normpath(wrong_enzippt_folder)
+
+    test_zip_file = "schwachstellenmgmt/Test@test.uni-heidelberg.de.zip"
+    test_zip_file = os.path.normpath(test_zip_file)
 
     # Das Cleanup-Funktionsobjekt wird erstellt
     def cleanup():
