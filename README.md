@@ -1,7 +1,7 @@
 # Vulnerability Management System
 
 ## Overview
-The Vulnerability Management System is a Python program designed to contact individuals responsible for IP addresses affected by vulnerabilities via email. Communication takes place via the Nextcloud platform, an onetimesecret service, and the sending of emails.
+The Vulnerability Management System is a Python program designed to contact individuals responsible for IP addresses affected by vulnerabilities via email. Communication takes place via the Nextcloud platform, an one-time secret service, and the sending of emails.
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/bwInfoSec/schwachstellenmgmt.git`
@@ -21,9 +21,9 @@ The user has to enter some information so that the script can start:
         - The PDFs are named as follows: `[...]_[IP address].pdf`
 
 2.  json-file:
-    - Path to the IP_Email JSON-file.
+    - Path to the IP_Email JSON file.
     - This JSON file contains mappings of IP addresses to email addresses.
-    - The file have to be in the following structure: 
+    - The file has to be in the following structure: 
   
 ```json
 {
@@ -65,7 +65,7 @@ otp_domain=
     - If nothing is entered then the default value `schwachstellenmgmt\templates\link_passwordZIP_emailText.txt` will be selected.
 
 7.  passwordnextcloud_emailtext:
-    - Path to a .txt file containing content for the email, which includes the one-time link for the password to Nextcloud.
+    - Path to a .txt file containing content for the email, which includes the one-time secret link for the password to Nextcloud.
     - The email content can be customized using the placeholder `{nextcloud_password_link}`.
     - If nothing is entered then the default value `schwachstellenmgmt\templates\passwordNextcloud_emailText.txt` will be selected.
 
@@ -73,34 +73,35 @@ otp_domain=
 To run the pytests, the user has to start a new Nextcloud instance so that the tests can also be run without the production system:
 1.  The user needs the running program "Docker Desktop".
 2.  Setup the Nextcloud instance: `docker-compose up -d`
-3.  Start the pytests: `pytest`
+3.  Wait a few seconds until the setup of the Nextcloud container is complete.
+4.  Start the pytests: `pytest`
 
 ## Content of the script: 
-1.  The individual PDF files from the report are sorted by e-mail address and packed into a ZIP file
-    - Include the json file with mapping IP to email and compare the IP addresses with the names of the PDF files (uni_heidelberg_Medium_[IP address].pdf) 
-    - All PDFs grouped according to the email addresses are stored in a common folder ([email address])
-    - 
+1.  The individual PDF files of the report will be sorted by email address and packed into a ZIP file
+    - This step contains the JSON file with the assignment of IP to email and compares the IP addresses with the names of the PDF files (uni_heidelberg_Medium_[IP address].pdf).
+    - All PDFs will be grouped according to the email addresses and saved in a same folder ([email address]).
+      
 2.  Login to Nextcloud
    
 3.  Create a tag:
     - The files on the Nextcloud will be deleted after x days
     - A tag with the name `Greenbone Report x-days` will be created for this purpose
-    - After `https://apps.nextcloud.com/apps/files_retention` all files with the tag will be deleted after x days
+    - According to `https://apps.nextcloud.com/apps/files_retention` all files with the tag will be deleted after x days
 
     `IMPORTANT: 
-    A tag with the corresponding name is created so that the user can individually determine how long the files are available. To enable Nextcloud to make the corresponding settings for the tags, the administrator of the Nextcloud account must write another script in the background and integrate it. This is still outstanding! Until then, this feature will not be used.`
+    The user can select the number of days after which the file is to be completely deleted at the start of the script. A tag with the corresponding name is created so that the user can individually determine how long the files are available. In order for Nextcloud to make the appropriate settings for the tags, the administrator of the Nextcloud account must write another script in the background and integrate it. This has not yet been done! Until then, this function will not be used.`
     
-4.  ZIP files ([email address].zip) are created from the folder from step 1
-    - The ZIP file is protected with a password
-    - The password for the ZIP file is provided via an one-time secret link
+4.  ZIP files ([email address].zip) will be created from the folder from step 1
+    - The ZIP file will be protected with a password
+    - The password for the ZIP file will be provided via an one-time secret link
 
-5.  ZIP files are uploaded
-    - The uploaded files are marked with the created tag
-    - A link is created to the uploaded file 
-    - The link is only valid for x days
-    - Nextcloud access is also protected with a password
-    - The password for the Nextcloud access is provided via an one-time secret link
+5.  ZIP files will be uploaded
+    - The uploaded files will be marked with the created tag
+    - A link will be created to the uploaded file 
+    - The link will only be valid for x days
+    - Nextcloud access will also be protected with a password
+    - The password for the Nextcloud access will be provided via an one-time secret link
 
-6.  Two different emails are sent to one recipient
+6.  Two different emails will be sent to one recipient
     - First contains the link to the file in the Nextcloud + one-time secret link to the password for the ZIP file
     - Second contains a one-time secret link to the password for the Nextcloud
