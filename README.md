@@ -13,7 +13,7 @@ The Vulnerability Management System is a Python program designed to contact indi
 7. Start the script: `schwachstellenmgmt`
 
 ## User Input
-The user has to enter some information so that the script can start:
+The user has to enter some information to start the script:
 
 1.  pdf-folder:
     - Path to the single_hosts folder of the Greenbone report.
@@ -52,22 +52,22 @@ otp_domain=
 ```
 
 4.  expiration-days:
-    - Number of days until the link to the file in the Nextcloud should expire.
-    - If nothing is entered then the default value ( = 14 days) will be selected.
+    - Number of days until the link to the file in the Nextcloud will expire.
+    - If no input is made, the default value `14 days` is set. 
 
 5.  deletion-days:
-    - Number of days until the files should be completely deleted from Nextcloud.
-    - If nothing is entered then the default value ( = 14 days) will be selected.
+    - Number of days until the files will be completely deleted from Nextcloud.
+    - If no input is made, the default value `14 days` is set. 
     
 6.  link_passwordzip_emailtext:
     - Path to a .txt file containing content for the email, which includes the link to Nextcloud and a one-time secret link for the password of the ZIP file.
     - The email content can be customized using placeholders like `{nextcloud_file_url}`, `{zip_password_link}`, and `{expiration_date}`.
-    - If nothing is entered then the default value `schwachstellenmgmt\templates\link_passwordZIP_emailText.txt` will be selected.
+    - If no input is made, the default value `schwachstellenmgmt\templates\link_passwordZIP_emailText.txt` is set.
 
 7.  passwordnextcloud_emailtext:
     - Path to a .txt file containing content for the email, which includes the one-time secret link for the password to Nextcloud.
     - The email content can be customized using the placeholder `{nextcloud_password_link}`.
-    - If nothing is entered then the default value `schwachstellenmgmt\templates\passwordNextcloud_emailText.txt` will be selected.
+    - If no input is made, the default value `schwachstellenmgmt\templates\passwordNextcloud_emailText.txt` is set.
 
 ## Tests
 To run the pytests, the user has to start a new Nextcloud instance so that the tests can also be run without the production system:
@@ -77,31 +77,31 @@ To run the pytests, the user has to start a new Nextcloud instance so that the t
 4.  Start the pytests: `pytest`
 
 ## Content of the script: 
-1.  The individual PDF files of the report will be sorted by email address and packed into a ZIP file
+1.  The individual PDF files of the report are sorted by email addresses and packed into a ZIP file
     - This step contains the JSON file with the assignment of IP to email and compares the IP addresses with the names of the PDF files (uni_heidelberg_Medium_[IP address].pdf).
-    - All PDFs will be grouped according to the email addresses and saved in a same folder ([email address]).
+    -  All PDFs are grouped by email address and saved in a same folder ([email address]).
       
 2.  Login to Nextcloud
    
 3.  Create a tag:
     - The files on the Nextcloud will be deleted after x days
-    - A tag with the name `Greenbone Report x-days` will be created for this purpose
+    - For this purpose, a tag with the name `Greenbone Report x-days` is created
     - According to `https://apps.nextcloud.com/apps/files_retention` all files with the tag will be deleted after x days
 
     `IMPORTANT: 
     The user can select the number of days after which the file is to be completely deleted at the start of the script. A tag with the corresponding name is created so that the user can individually determine how long the files are available. In order for Nextcloud to make the appropriate settings for the tags, the administrator of the Nextcloud account must write another script in the background and integrate it. This has not yet been done! Until then, this function will not be used.`
     
-4.  ZIP files ([email address].zip) will be created from the folder from step 1
-    - The ZIP file will be protected with a password
-    - The password for the ZIP file will be provided via an one-time secret link
+4.  ZIP files ([email address].zip) are created from the folder from step 1
+    - The ZIP file is protected with a password
+    - The password for the ZIP file is communicated via a one-time secret link
 
-5.  ZIP files will be uploaded
-    - The uploaded files will be marked with the created tag
-    - A link will be created to the uploaded file 
+5.  ZIP files are uploaded
+    - The uploaded files are marked with the tag created
+    - A link to the uploaded file is created 
     - The link will only be valid for x days
-    - Nextcloud access will also be protected with a password
-    - The password for the Nextcloud access will be provided via an one-time secret link
+    - Nextcloud access is also protected with a password
+    - The password for Nextcloud access is provided via a one-time secret link
 
-6.  Two different emails will be sent to one recipient
-    - First contains the link to the file in the Nextcloud + one-time secret link to the password for the ZIP file
-    - Second contains a one-time secret link to the password for the Nextcloud
+6.  Two different emails are sent to one recipient
+    - The first contains the link to the file in the Nextcloud + a one-time secret link to the password for the ZIP file
+    - The second contains a one-time secret link to the password for the Nextcloud
