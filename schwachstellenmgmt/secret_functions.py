@@ -18,14 +18,14 @@ def generate_random_password(length=12) -> str:
 
 def create_one_time_secret_link(secret: str, credentials: dict) -> str:
     """
-    The function creates a one-time secret link for the submitted secret with a custom URL for Heidelberg University's One-Time Secret service
+    The function creates a one-time link for the submitted secret with a custom URL for Heidelberg University's One-Time Secret service
 
     Args:
-    secret (str): The secret for which the one-time secret link is generated.
-    credentials (dict): A dictionary containing access data for creating the one-time secret link.
+    secret (str): The secret for which the one-time link is generated.
+    credentials (dict): A dictionary containing access data for creating the one-time link.
 
     Returns:
-    str: The generated one-time secret link.
+    str: The generated one-time link.
     """
 
     try:
@@ -37,9 +37,9 @@ def create_one_time_secret_link(secret: str, credentials: dict) -> str:
 
         secret_key = response_data['secret_key']
 
-        # Create the one-time secret link
+        # Create the one-time link
         link = otp_domain + '/secret/' + secret_key
         return link
 
     except Exception as e:
-        print(f"Error creating One-Time-Secret link: ", e)
+        print(f"Error creating one-time link: ", e)
