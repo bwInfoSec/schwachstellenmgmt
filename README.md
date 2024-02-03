@@ -60,12 +60,12 @@ otp_domain=
     - If no input is made, the default value `14 days` is set. 
     
 6.  link_passwordzip_emailtext:
-    - Path to a .txt file containing content for the email, which includes the link to Nextcloud and a one-time secret link for the password of the ZIP file.
+    - Path to a .txt file containing content for the email, which includes the link to Nextcloud and a one-time link for the password of the ZIP file.
     - The email content can be customized using placeholders like `{nextcloud_file_url}`, `{zip_password_link}`, and `{expiration_date}`.
     - If no input is made, the default value `schwachstellenmgmt\templates\link_passwordZIP_emailText.txt` is set.
 
 7.  passwordnextcloud_emailtext:
-    - Path to a .txt file containing content for the email, which includes the one-time secret link for the password to Nextcloud.
+    - Path to a .txt file containing content for the email, which includes the one-time link for the password to Nextcloud.
     - The email content can be customized using the placeholder `{nextcloud_password_link}`.
     - If no input is made, the default value `schwachstellenmgmt\templates\passwordNextcloud_emailText.txt` is set.
 
@@ -93,15 +93,15 @@ To run the pytests, the user has to start a new Nextcloud instance so that the t
     
 4.  ZIP files ([email address].zip) are created from the folder from step 1
     - The ZIP file is protected with a password
-    - The password for the ZIP file is communicated via a one-time secret link
+    - The password for the ZIP file is communicated via a one-time link
 
 5.  ZIP files are uploaded
     - The uploaded files are marked with the tag created
     - A link to the uploaded file is created 
     - The link will only be valid for x days
     - Nextcloud access is also protected with a password
-    - The password for Nextcloud access is provided via a one-time secret link
+    - The password for Nextcloud access is provided via a one-time link
 
 6.  Two different emails are sent to one recipient
-    - The first contains the link to the file in the Nextcloud + a one-time secret link to the password for the ZIP file
-    - The second contains a one-time secret link to the password for the Nextcloud
+    - The first contains the link to the file in the Nextcloud + a one-time link to the password for the ZIP file
+    - The second contains a one-time link to the password for the Nextcloud

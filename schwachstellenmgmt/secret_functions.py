@@ -16,7 +16,7 @@ def generate_random_password(length=12) -> str:
     except Exception as e:
         print(f"Error generating random password: ", e)
 
-def create_one_time_secret_link(secret: str, credentials: dict) -> str:
+def create_one_time_link(secret: str, credentials: dict) -> str:
     """
     The function creates a one-time link for the submitted secret with a custom URL for Heidelberg University's One-Time Secret service
 
