@@ -29,16 +29,16 @@ def create_one_time_link(secret: str, credentials: dict) -> str:
     """
 
     try:
-        otp_domain = credentials['otp_domain']
+        ots_domain = credentials['ots_domain']
 
         # Send request to create the one-time secret to the One-Time-Secret API
-        response = requests.post(otp_domain + '/api/v1/share', data={'secret': secret})
+        response = requests.post(ots_domain + '/api/v1/share', data={'secret': secret})
         response_data = response.json()
 
         secret_key = response_data['secret_key']
 
         # Create the one-time link
-        link = otp_domain + '/secret/' + secret_key
+        link = ots_domain + '/secret/' + secret_key
         return link
 
     except Exception as e:

@@ -48,7 +48,7 @@ SMTP_port=
 SMTP_username=
 SMTP_password=
 SMTP_email=
-otp_domain=
+ots_domain=
 ```
 
 4.  expiration-days:
