@@ -93,7 +93,7 @@ To run the pytests, the user has to start a new Nextcloud instance so that the t
     
 4.  ZIP files ([email address].zip) are created from the folder from step 1
     - The ZIP file is protected with a password
-    - The password for the ZIP file is communicated via a one-time link
+    - The password for the ZIP file is provided via a one-time link
 
 5.  ZIP files are uploaded
     - The uploaded files are marked with the tag created
